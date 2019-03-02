@@ -1,0 +1,220 @@
+ 
+
+<!-- header starts here -->
+<mat-toolbar color="primary" class="example-toolbar">
+     
+      <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+     
+</mat-toolbar>
+<!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+  [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+  <!---side nave starts here -->
+  <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+  <!---side nave ends here -->
+  <!---side nave content starts here -->
+  <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+  <!-- Body content starts here -->
+    <div class="container" [style.marginTop.px]=80>
+      <div *ngIf="managementService">
+        <div class="text-center">Choose A service  </div>
+        <div class= "row " [style.marginTop.px]=80>
+          <div  class="col-md-4 user_service">
+            <mat-card class="mb service">
+              <div class="service_background text-center " [style.marginBottom.px]=15 >
+                  <p class="fw-5">Medical Management System</p>
+                  
+              </div>
+              <div>
+                <ul class="pharma">
+                  <li class="color-pharma">Get Set Care  </li>
+                  <li class="color-pharma">Sub Domain </li>
+                </ul>
+              </div>
+              <div class="text-center" >
+                  <img class="padding"  src="assets/images/01.PNG" alt="check" width=90>
+              </div>
+              <div class="service-payment">
+                <div class="text-center">
+                  <button mat-button class="btn btn-black f-size-12" (click)="subDomain()">PROCEED TO PAYMENT</button>
+                </div>
+              </div>
+                
+            </mat-card>
+          </div>
+          <div  class="col-md-4  user_service">
+              <mat-card class="mb service">
+                  <div class="service_background text-center  " [style.marginBottom.px]=15  >
+                      <p class="fw-5">Medical Management System</p>
+                  </div>
+                  <div>
+                  <ul class="pharma">
+                    <li class="color-pharma">
+                      Independent Domain       
+                    </li>
+                    <li class="color-pharma">
+                        Dedicated Server Hosting         
+                      </li>
+                  </ul>
+                  </div>
+                  <div class="text-center ">
+                      <img class="padding"  src="assets/images/02.PNG" alt="check" width=90>
+                  </div>
+                  <div class="service-payment">
+                    <div class="text-center">
+                        <button mat-button class="btn btn-black f-size-12 " (click)="dedicatedDomain()">PROCEED TO PAYMENT</button>
+                    </div>
+                  </div>
+                    
+                </mat-card>
+          </div>
+          <div class="col-md-4   user_service">
+              <mat-card class="mb service">
+                  <div class="service_background text-center" [style.marginBottom.px]=15>
+                      <p class="fw-5">Medical Management System</p>
+                  </div>
+                  <div>
+                    <ul class="pharma">
+                      <li class="color-pharma">
+                      Independent Domain           
+                      </li>
+                      <li class="color-pharma">
+                           Self Hosting                
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="text-center"><img class="padding" src="assets/images/03.PNG" alt="check" width=70; ></div>
+                  <div class="service-payment">
+                      <div class="text-center">
+                          <button mat-button class="btn btn-black f-size-12" (click)="independentbDomain()">PROCEED TO PAYMENT</button>
+                      </div>
+                  </div>
+                </mat-card>
+          </div>
+        </div>
+      </div>
+      <!--Choosen Product-->
+      <div *ngIf="chosenProduct">
+        <div class="row">
+            <div class="col-md-4   user_service">
+                <p class= "text-center">Choosen Product</p>
+                  <mat-card class="mb service choosen-product">
+                      <div class="service_background text-center" [style.marginBottom.px]=15>
+                          <p class="fw-5">Medical Management System</p>
+                      </div>
+                      <div>
+                        <ul class="pharma">
+                          <li class="color-pharma">
+                              {{domainhostingtype }}               
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-center"><img class="padding" src="assets/images/0{{imgNo}}.PNG" alt="check" width=100; ></div>
+                      <div class=" ">
+                          <div class="text-center">
+                              <img class="padding" src="assets/images/available.png" alt="check" width=50; >
+                          </div>
+                      </div>
+                    </mat-card>
+              </div>
+              <div class="offset-md-2 col-md-6">
+                <div class="choosen-product-details">
+                  <form role="form" [formGroup]="chooseProductForm" (ngSubmit)="chooseProduct(chooseProductForm.value)">
+                    <mat-form-field  class="dropdown" >    
+                        <mat-error *ngFor="let validation of validation_messages.sponser">
+                            <mat-error class="error-message" *ngIf="chooseProductForm.get('sponser').hasError(validation.type) && (chooseProductForm.get('sponser').dirty || chooseProductForm.get('sponser').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <mat-select placeholder="Sponsered By" [formControl]="chooseProductForm.controls['sponser']" >
+                            <mat-option *ngFor="let sponser of ddropduwn"  value="sponser.key" >
+                                {{sponser.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class=""> 
+                      <mat-error *ngFor="let validation of validation_messages.accessCode">
+                        <mat-error class="error-message" *ngIf="chooseProductForm.get('accessCode').hasError(validation.type) && (chooseProductForm.get('accessCode').dirty || chooseProductForm.get('accessCode').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                        <input matInput class="form-control login-form-control" placeholder="Access Code" [formControl]="chooseProductForm.controls['accessCode']" required type="text">
+                    </mat-form-field>
+                    <div class="">
+                        <button mat-button class="btn-submit" type="submit"[disabled]="!chooseProductForm.valid">PROCEED</button>
+                    </div>
+                  </form>
+                </div>
+                <br/>
+                
+                  <div >
+                      <mat-checkbox class="f-size-12 color-pharma"  (click)="noSponsers()"  >  No Sponsers are available</mat-checkbox>            
+                </div>
+              </div>
+        </div>
+        
+      </div>
+      <!--Choosen Product-->
+      <!-- Selecting hosting Duration with Amount-->
+      <div *ngIf="hostingcost">
+        <div class="row">
+          <div class="col-sm-12 mb-5">
+            <div class="color-pharma" [style.fontSize.px]=18>
+              <strong>Medical Management System</strong>
+            </div>
+          </div>         
+        </div>
+        <!-- Displaying Selecting Duration-->
+        <div class="row">
+          <div class="col-sm-9 right-border">
+            <div class="row">
+                <!--div class="col-md-10"> <div class="pull-left color-pharma" [style.paddingTop.px]=30>Clinic Management (Sponsered By Get Set Healthy Foundation)</div></div>
+                <div class="col-md-10"> <div class="pull-left color-pharma" [style.paddingTop.px]=4>Pharmacy Management (Sponsered By Get Set Healthy Foundation)</div></div>
+                <div class="col-md-10"> <div class="pull-left color-pharma" [style.paddingTop.px]=4>Lab Management (Sponsered By Get Set Healthy Foundation)</div></div-->
+                <div class="col-md-10"> <div class="pull-left color-pharma" [style.paddingTop.px]=4>{{domainhostingtype }}</div></div>
+                <div class="col-md-2 "> 
+                  <mat-form-field  class="dropdown" >    
+                    <mat-select placeholder="Duration" >
+                        <mat-option *ngFor="let duration of ddropduwn"  value="duration.key" (click)="durationmethod(duration)">
+                            {{duration.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 "> 
+            <table class="float-right">
+              <tr>
+                  <td><div [style.paddingTop.px]=4 [style.paddingLeft.px]=20 class="color-pharma float-right"> <span class="rupee">&#x20b9;</span> {{  amount  | number :'2.2':"en"}}</div></td>
+              </tr>
+            </table>
+            
+              
+                
+                
+          </div>
+        </div>
+        <!-- Horizontal Line-->
+        <hr  [style.margin.px]=0>
+        <!-- Displaying total Amount-->
+        <div class="row"> 
+            <div class="col-sm-9">
+              <div class="row">
+                  <div class="col-md-10"> <div class="pull-left color-pharma" ></div></div>
+                  <div class="col-md-2 right-border"> <div class="color-pharma" [style.paddingTop.px]=10>  Total Amount</div></div>
+              </div>
+            </div>
+            <div class="col-sm-3"> 
+                <div [style.paddingTop.px]=10 [style.paddingLeft.px]=20 class="color-pharma float-right"> <span class="rupee">&#x20b9;</span> {{amount  | number:'2.2':"en"}}</div>  
+            </div>
+        </div>
+        <!-- Displaying total Amount Ends Here-->
+        <div class="float-right" [style.marginTop.px]=20>
+          <button mat-button class="btn-submit"[style.marginRight.px]=15 (click)="makePayment()" [disabled]='!duratonSelected'> Make Payment</button>
+          <button mat-button class="btn-submit" (click)="cancelPayment()"> Cancel</button>
+        </div>
+      </div>
+      <!-- Selecting hosting Duration with Amount-->
+
+    </div>
+  <!-- Body content Ends here -->
+  </mat-sidenav-content>  
+  <!---side nave content ends here -->
+</mat-sidenav-container>

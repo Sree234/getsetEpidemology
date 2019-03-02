@@ -1,0 +1,85 @@
+<div class="mt-5">
+
+
+  <div class=" offset-md-3 col-md-6">
+    <h2>PayU Payment Form</h2>
+    <form ngNoForm id="payuform" action="https://secure.payu.in/_payment" name="payuform" method="POST" target="_blank"  onsubmit="window.open('about:blank','payment_popup','width=900,height=500');">
+      <input type="text" name="key"  hidden id="key"  ng-model="key"   [(ngModel)]="payuform.key"/>
+      <input type="text" name="hash"  hidden id="hash"  ng-model="hash"  [(ngModel)]="payuform.hash"/>
+      <input type="text" name="txnid" hidden id="txnid"  ng-model="txnid"  [(ngModel)]="payuform.txnid"/>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="payuform.amount">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="payuform.firstname">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="payuform.email">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Phone:</label>
+            <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="payuform.phone">
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="form-group">
+        <!--label for="productInfo">Product Info: </label-->
+        <input type="text" class="form-control" hidden id="productInfo" name="productinfo" [(ngModel)]="payuform.productinfo">
+      </div>
+      <div class="form-group">
+        <!--label for="productInfo">Success URI: </label-->
+        <input type="text" class="form-control" hidden id="surl" name="surl" [(ngModel)]="payuform.surl">
+      </div>
+      <div class="form-group">
+        <!--label for="productInfo">Failure URI: </label-->
+        <input type="text" class="form-control" hidden id="furl" name="furl" [(ngModel)]="payuform.furl">
+      </div>
+      <input type="text" name="service_provider" hidden id="service_provider"   value="payu_paisa"/>
+      <div class="form-group">
+        <!--label for="productInfo">hashString: </label-->
+        <input type="text" class="form-control" id="hashString" hidden name="hashString" [(ngModel)]="payuform.hashString">
+      </div>
+      
+      <td> <input name="udf1" hidden [(ngModel)]="payuform.udf1"></td>
+     
+      <td><input name="udf2" hidden [(ngModel)]="payuform.udf1"></td>
+  
+            <!-- <td>UDF3: </td> -->
+            <td><input name="udf3"  hidden [(ngModel)]="payuform.udf3"></td>
+            <!-- <td>UDF4: </td> -->
+            <td><input name="udf4" hidden [(ngModel)]="payuform.udf4"></td>
+            <!-- <td>UDF5: </td> -->
+            <td><input name="udf5" hidden [(ngModel)]="payuform.udf5"></td>
+            <!-- <td>UDF6: </td> -->
+            <td><input name="udf6" hidden [(ngModel)]="payuform.udf6"></td>
+            <!-- <td>UDF7: </td> -->
+            <td><input name="udf7"  hidden [(ngModel)]="payuform.udf7"></td>
+            <!-- <td>UDF8: </td> -->
+            <td><input name="udf8" hidden [(ngModel)]="payuform.udf8"></td>
+            <!-- <td>UDF9: </td> -->
+            <td><input name="udf9" hidden [(ngModel)]="payuform.udf9"></td>
+            <!-- <td>UDF10: </td> -->
+            <td><input name="udf10" hidden  [(ngModel)]="payuform.udf10"></td>
+  
+            <button  [disabled]="!disablePaymentButton" type="button"  class="btn btn-default" (click)="confirmPayment()">Confirm</button>
+      
+      <!--button *ngIf="!disablePaymentButton" type="submit"  class="btn btn-danger">Submit</button-->
+    </form>
+  </div>
+  
+  </div> 

@@ -1,0 +1,68 @@
+<!-- header starts here -->
+ <mat-toolbar color="primary" class="example-toolbar">
+        
+        <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+        <a  routerLink="/user/register"> <button  class="btn btn-pharma pl-3 pr-3 mat-button float-right mr-2 mt-2">SIGNUP</button></a>
+        
+</mat-toolbar>
+<!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+    <!---side nave starts here -->
+    <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+    <!---side nave ends here -->
+    <!---side nave content starts here -->
+    <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+        <div class="mt-5">
+            <div class="container-fluid">
+            <div class="row">
+                    <div class="d-none d-xl-block d-lg-block offset-lg-2"> </div>
+                <div class="col-md-5 col-lg-4">
+                    <mat-card  class="mt-5 p-1 qr-box" >
+                        <a class="nav-link" routerLink="/user/scanqr">
+                            <img  src="assets/images/scan_qr.png" class="pr-2 img-fluid" width="60" alt=" Qr Scan" >
+                            <span class="color-pharma f-size-22" [style.marginLeft.em]=1.5>Login With QR Code</span>
+                        </a>
+                    </mat-card>
+                </div>
+                <div class="col col-md-2  text-center mt-5"><p class="mt-4">(or)</p></div>
+                
+                <div class="col-md-5 col-lg-4 sign_in">
+                    <mat-card class="w-100 p-3">
+                        <form  role="form" [formGroup]="complexForm" (ngSubmit)="checkEmail(complexForm.value)">
+                            <mat-form-field class="checkEmail "> 
+                                <mat-error *ngFor="let validation of validation_messages.email">
+                                        <mat-error class="error-message" *ngIf="complexForm.get('email').hasError(validation.type) && ( complexForm.get('email').dirty || complexForm.get('email').touched) ">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <mat-icon matPrefix class="color-pharma mr-2">person</mat-icon> 
+                            
+                                <input matInput class=""   [formControl]="complexForm.controls['email']"   placeholder="Enter Phone No/Email"  required type="text">
+                            </mat-form-field>
+                            <mat-form-field class="checkEmail ">
+                                <mat-error *ngFor="let validation of validation_messages.password">
+                                        <mat-error class="error-message" *ngIf="complexForm.get('password').hasError(validation.type) && ( complexForm.get('password').dirty || complexForm.get('password').touched) ">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <mat-icon matPrefix class="color-pharma mr-2">https</mat-icon> 
+                                <input matInput class=""  [formControl]="complexForm.controls['password']"   placeholder="password"  required type="password">
+                            </mat-form-field>
+                            <div>
+                                <mat-checkbox class="f-size-12 color-pharma">Remember Me</mat-checkbox>
+                        
+                                <a class="float-right f-size-12 color-pharma" [ngStyle]="{'cursor':'pointer'}"  (click)="forgotPassword()" >Forgot Password ?</a>
+                            </div>
+                            <div class="text-center">
+                                <button mat-button  class="btn wt-100 btn-pharma plr-2" type="submit" [disabled]="!complexForm.valid">  LOGIN </button>
+                            </div>
+                        </form>
+                        
+                    </mat-card>
+                </div>
+        
+                </div>
+            </div>
+                   
+        </div>
+    </mat-sidenav-content>  
+    <!---side nave content ends here -->
+</mat-sidenav-container>
+

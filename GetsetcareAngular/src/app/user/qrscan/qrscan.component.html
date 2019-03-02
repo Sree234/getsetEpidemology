@@ -1,0 +1,44 @@
+ 
+ <!-- header starts here -->
+ <mat-toolbar color="primary" class="example-toolbar">
+        
+        <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+        <a  routerLink="/user/register"> <button  class="btn btn-pharma  pl-3 pr-3 mat-button float-right mr-2 mt-2">SIGN UP</button></a>
+        
+</mat-toolbar>
+<!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+    <!---side nave starts here -->
+    <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+    <!---side nave ends here -->
+    <!---side nave content starts here -->
+    <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+        <div class="mt-5">
+            <div class="">
+                <div class="col-md-6 offset-md-3 ">
+                <div class="text-center">
+                        <mat-card class="text-center color-pharma" >
+                            <div class="col-sm-12"> 
+                                Scan This QR Code From App To Login To Web
+                            </div>
+                            <div class="col-sm-12 mt-2 "> 
+                            <img class="img-responsive" src="assets/images/scan_qr.png"  class="pr-2" alt=" Qr Scan" >
+                            <!--qr-code [value]="'All QR Code data goes here!'" [size]="150"></qr-code-->
+                            </div>
+                            <div class="mt-2">
+                                <mat-checkbox >keep me login</mat-checkbox>
+                            </div>
+                            <div class="p-3">
+                                <a  routerLink="/user/login"> <mat-icon class="float-left" matTooltip="View Login Page" >arrow_back</mat-icon></a>
+                            </div>
+                            
+                            
+                        </mat-card>
+                </div>
+            </div>
+            </div>
+        </div>
+    </mat-sidenav-content>  
+    <!---side nave content ends here -->
+</mat-sidenav-container>

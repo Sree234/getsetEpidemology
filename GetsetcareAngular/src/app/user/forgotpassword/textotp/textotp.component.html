@@ -1,0 +1,30 @@
+<form  role="form" [formGroup]="complexForm" (ngSubmit)="textOtp(complexForm.value)">
+    <div  class="form-group">
+    <div>
+         <mat-form-field class="example-full-width kk complexForm" class="col-sm-12">
+    
+            <mat-error *ngFor="let validation of validation_messages.mobileNumber">
+                <mat-error class="error-message" *ngIf="complexForm.get('mobileNumber').hasError(validation.type) && (complexForm.get('mobileNumber').dirty || complexForm.get('mobileNumber').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+            <input  class= "" #mobileNumber type="text"  matInput  [formControl]="complexForm.controls['mobileNumber']" placeholder="Mobile Number">
+        </mat-form-field>
+    </div >
+    <div  class="">
+        <mat-form-field class="example-full-width kk complexForm " class="col-sm-12">
+            <mat-error *ngFor="let validation of validation_messages.otp">
+                <mat-error class="error-message" *ngIf="complexForm.get('otp').hasError(validation.type) && (complexForm.get('otp').dirty || complexForm.get('otp').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+            <input  class= ""  #otp  type="text" matInput [formControl]="complexForm.controls['otp']"   placeholder=" Enter otp">
+        </mat-form-field>
+    </div>
+    <mat-error>{{nodata}}</mat-error>
+    <a [style.paddingLeft.px]=15 (click)="reSendOtp()" class="resend">Re-send Otp</a>
+    </div>
+    
+    <div  class="text-center" >
+    <a class="nav-link" > <button mat-button class=" btn  btn-black w-100" [disabled]= "!complexForm.valid" >Verify Otp</button></a>
+    </div>
+    <div class="text-center mt-4 " *ngIf="loader"><img class="img-responsive" src="assets/images/glow.gif" width =30 alt="Logo" ></div> 
+</form>
+
+ 

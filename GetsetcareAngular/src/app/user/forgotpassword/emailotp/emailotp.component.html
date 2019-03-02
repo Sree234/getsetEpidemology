@@ -1,0 +1,31 @@
+
+
+<form  role="form" [formGroup]="verifyEmail" (ngSubmit)="semdemail(verifyEmail.value)">
+    <div class="form-group">
+      <div>
+        <mat-form-field class="example-full-width" class="col-sm-12">
+            <mat-error *ngFor="let validation of validation_messages.vemail">
+                <mat-error class="error-message" *ngIf="verifyEmail.get('vemail').hasError(validation.type) && (verifyEmail.get('vemail').dirty || verifyEmail.get('vemail').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            <mat-icon matPrefix>mail</mat-icon> <input  type="text" matInput  [formControl]="verifyEmail.controls['vemail']" placeholder="Email">
+          </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width kk" class="col-sm-12">
+            <mat-error *ngFor="let validation of validation_messages.votp">
+              <mat-error class="error-message" *ngIf="verifyEmail.get('votp').hasError(validation.type) && (verifyEmail.get('votp').dirty || verifyEmail.get('votp').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+         
+            <input  type="text" matInput  [formControl]="verifyEmail.controls['votp']" placeholder=" Enter otp">
+          </mat-form-field>
+        </div>
+        <a [style.paddingLeft.px]=15 (click)="resendOtp()">Re-send Otp</a>
+        
+        
+      <div class="text-center">
+      <button mat-button class="btn-pharma" type="submit" [disabled]="!verifyEmail.valid">Verify Otp</button>
+      
+      </div>
+    </div>
+    <mat-error>{{nodata}}</mat-error>
+  </form>

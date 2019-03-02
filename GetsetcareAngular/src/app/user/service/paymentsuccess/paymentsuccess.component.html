@@ -1,0 +1,73 @@
+
+ 
+<!-- header starts here -->
+<mat-toolbar color="primary" class="example-toolbar">
+     
+      <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+      
+</mat-toolbar>
+<!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+  [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+  <!---side nave starts here -->
+  <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+  <!---side nave ends here -->
+  <!---side nave content starts here -->
+  <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+  <!-- Body content starts here -->
+    <div class="container" [style.marginTop.px]=80>
+      <div class="col-md-12">
+          <h6 class="color-pharma">Payment Successfull !</h6>
+          <p>Your Reference Number is : cgad3456u1</p>
+          <p style="color:#777"> <span>Transaction Details:</span><span class="float-right"> Date:14:25  {{cdate}}</span></p>
+          
+
+
+
+          <div class="border">
+            <div class="row no-margin" style="background-color:#ddd; color:#000; padding:10px 5px">
+              <div class=" col float-left"><strong>Payment Detals</strong></div>
+              <div class=" float-right"><strong> TransactionId: # ASDC235T5R454</strong></div>
+            </div>
+            <div class="border-1 color-pharma">
+            <div class="row no-margin ">
+              <div class=" col-9 col- col-lg-8 ">
+                <div class="border-2">
+                  <div class="row no-margin pt-4 pb-3">
+                    <div class="col-lg-9">
+                        <p>Medical Management System For {{dduration}} Year(s)</p>
+                        <p>{{domainHosting}}</p>
+                    </div>
+                    <div class="col-lg-3 ">
+                        <img  class="float-right img-flex" src="assets/images/paid.png" alt="check">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="  col-3 col-lg-4 pt-4">
+                <div class="text-center"> <span class="rupee">&#x20b9;</span> {{hostingAmount | number:'':'en'}}</div>
+              </div>
+            </div>
+          </div>
+            <div class="row no-margin color-pharma">
+                <div class=" col-9  col-lg-8 ">
+              <div class=" border-2 pt-2 pb-2 ">
+                <div class=""><p class="no-margin">Totla Amount</p></div>
+                  
+                </div>
+              </div>
+              
+              <div class="col-3 col-lg-4">
+                  <div class="text-center pt-2"><span class="rupee">&#x20b9;</span>{{hostingAmount | number:'':'en'}}</div>
+              </div>
+            </div>
+          </div>
+
+          <button mat-button class="btn-submit mt-2 mb-2" (click)="goToRegistration()">Proceed to Register</button>
+      </div>
+
+    </div>
+  <!-- Body content Ends here -->
+  </mat-sidenav-content>  
+<!---side nave content ends here -->
+</mat-sidenav-container>

@@ -1,0 +1,32 @@
+
+
+
+
+<form  role="form" [formGroup]="complexForm" (ngSubmit)="otptext(complexForm.value)">
+    <div class="form-group">
+      <div>
+        <mat-form-field class="example-full-width" class="col-sm-12">
+            <mat-error *ngFor="let validation of validation_messages.mobileNumber">
+                <mat-error class="error-message" *ngIf="complexForm.get('mobileNumber').hasError(validation.type) && (complexForm.get('mobileNumber').dirty || complexForm.get('mobileNumber').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+           <span matPrefix [style.marginRight.px]=15>+91</span> <input type="text" matInput value="" [formControl]="complexForm.controls['mobileNumber']" placeholder="Mobile Number">
+          </mat-form-field>
+      </div>
+     <div class="mm">
+        <mat-form-field class="example-full-width" class="col-sm-12"> 
+            <mat-error *ngFor="let validation of validation_messages.dob">
+                <mat-error class="error-message" *ngIf="complexForm.get('dob').hasError(validation.type) && (complexForm.get('dob').dirty || complexForm.get('dob').touched)">{{validation.message}}</mat-error>
+            </mat-error>         
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input  type="text" matInput  [matDatepicker]="picker" value=""  [formControl]="complexForm.controls['dob']"placeholder="Date Of Birth">
+        </mat-form-field>
+      </div>
+      <div class="text-center">
+      <button mat-button class="btn btn-black w-100" type="submit" [disabled]="!complexForm.valid">Text me</button>
+      
+      </div>
+      <div class="text-center mt-4" *ngIf="loader"><img class="img-responsive" src="assets/images/glow.gif" width =30 alt="Logo" ></div> 
+      <mat-error>{{nodata}}</mat-error>
+    </div>
+  </form>
