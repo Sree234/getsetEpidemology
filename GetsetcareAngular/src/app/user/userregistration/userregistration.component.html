@@ -1,0 +1,130 @@
+<div class=" container"  [style.marginTop.px]=80>
+  <div class="row">
+    <div class="col-md-7 color-epidemology f-size-20">
+      
+      <p [ngStyle]="{'text-align':'justify'}">Get Set Epidemology (Integrated Medical Management System) is a revolutionary application that  fills the gap between Doctors,Hospitals Paramedics , Lab technicians, Pharmacitsts and Patients. It's Advanced EMR(Electronic Medical Records) gets rid of paper from a doctor's
+        office. It synchronises with the patient's personal health assistant system irrespective of health care service  center(public or private) Therefore it prevents loss or duplication of patients health care data and provides accurate health care census.
+        It's unified cloud architecture will allow organizations to work together and enables to deliver healthcare services faster, smarter, and more convenient.
+      </p>
+        <div class="doctor-img">
+            <img src="assets/images/doctor.png" class="img-fluid" alt="doctor" >
+        </div>
+    </div>
+    <div class="dc col-md-5 register-form">
+        <div class="text-center"><h4 [ngStyle]="{'color':'#ffb200'}">Registration</h4></div>               
+        <div>
+            <form  role="form" [formGroup]="userRegistrationForm" (ngSubmit)="registerUser(userRegistrationForm.value)">
+
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.firstName">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('firstName').hasError(validation.type) && (userRegistrationForm.get('firstName').dirty || userRegistrationForm.get('firstName').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="text" matInput   placeholder="First Name* " [formControl]="userRegistrationForm.controls['firstName']">
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.lastName">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('lastName').hasError(validation.type) && (userRegistrationForm.get('lastName').dirty || userRegistrationForm.get('lastName').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="text" matInput   placeholder="Last Name* " [formControl]="userRegistrationForm.controls['lastName']">
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.dateOfBirth">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('dateOfBirth').hasError(validation.type) && (userRegistrationForm.get('dateOfBirth').dirty || userRegistrationForm.get('dateOfBirth').touched)">{{validation.message}}</mat-error>
+                        </mat-error>                        
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" placeholder="Date Of Birth* " [formControl]="userRegistrationForm.controls['dateOfBirth']">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+        
+                </div>
+                <div class= "col-md-12">
+                    <mat-form-field  >
+                        <mat-error *ngFor="let validation of validation_messages.gender">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('gender').hasError(validation.type) && (userRegistrationForm.get('gender').dirty || userRegistrationForm.get('gender').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <mat-select placeholder="Gender*" [formControl]="userRegistrationForm.controls['gender']">
+                            <mat-option value="Male" >Male </mat-option>
+                            <mat-option value="Female" >Female </mat-option>
+                           
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12"  >
+                    <mat-form-field>
+                        <mat-error *ngFor="let validation of validation_messages.country">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('country').hasError(validation.type) && (userRegistrationForm.get('country').dirty || userRegistrationForm.get('country').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <mat-select placeholder="Country" [formControl]="userRegistrationForm.controls['country']">
+                        <mat-option *ngFor="let countrie of Countries"  [value]="countrie.countryCode" (click)="selectCountry(countrie)">
+                            {{countrie.country}}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> 
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.mobileNumber">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('mobileNumber').hasError(validation.type) && (userRegistrationForm.get('mobileNumber').dirty || userRegistrationForm.get('mobileNumber').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="text" matInput  placeholder="Mobile Number*" [formControl]="userRegistrationForm.controls['mobileNumber']">
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12">
+                        <mat-form-field class="registerUser ">
+                            <mat-error *ngFor="let validation of validation_messages.eMail">
+                                <mat-error class="error-message" *ngIf="userRegistrationForm.get('eMail').hasError(validation.type) && (userRegistrationForm.get('eMail').dirty || userRegistrationForm.get('eMail').touched)">{{validation.message}}</mat-error>
+                            </mat-error>
+                            <div class="">
+                                <input  #emailid  matInput  placeholder="Email*" [formControl]="userRegistrationForm.controls['eMail']"    placeholder="Email"  required type="text">
+                            </div>
+                        </mat-form-field>
+                </div>
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.userName">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('userName').hasError(validation.type) && (userRegistrationForm.get('userName').dirty || userRegistrationForm.get('userName').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="text" matInput  placeholder="Create Username*" [formControl]="userRegistrationForm.controls['userName']" >
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12">
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.createPassword">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('createPassword').hasError(validation.type) && (userRegistrationForm.get('createPassword').dirty || userRegistrationForm.get('createPassword').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="password" matInput  placeholder="Create Password*" [formControl]="userRegistrationForm.controls['createPassword']">
+                    </mat-form-field>
+                </div>
+                <div class= "col-md-12"> 
+                    <mat-form-field class="example-full-width kk">
+                        <mat-error *ngFor="let validation of validation_messages.reEnterPassword">
+                            <mat-error class="error-message" *ngIf="userRegistrationForm.get('reEnterPassword').hasError(validation.type) && (userRegistrationForm.get('reEnterPassword').dirty || userRegistrationForm.get('reEnterPassword').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                        <input  type="password" matInput  placeholder="Re-enter password*" [formControl]="userRegistrationForm.controls['reEnterPassword']" (input)="onSearchChange($event.target.value)">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12" [style.fontSize.px]=12>
+                    <mat-error>{{matching}}</mat-error></div>
+                <mat-error *ngFor="let validation of validation_messages.checked">
+                        <mat-error class="error-message" *ngIf="userRegistrationForm.get('checked').hasError(validation.type) && (userRegistrationForm.get('checked').dirty || userRegistrationForm.get('checked').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                <mat-checkbox class="f-size-12 color-epidemology" [style.paddingLeft.px]=15  [formControl]="userRegistrationForm.controls['checked']"  >  I Agree Terms & Conditions</mat-checkbox>
+         
+               
+                
+                <div class="text-center ">
+                    <a class="nav-link  float-left" > <button mat-button type="submit" class="btn-submit" [disabled]="!userRegistrationForm.valid">Register</button></a>
+                    <a class="nav-link float-right"  routerLink="/user/register"> <button mat-button class="btn-submit">Cancel</button></a>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
+

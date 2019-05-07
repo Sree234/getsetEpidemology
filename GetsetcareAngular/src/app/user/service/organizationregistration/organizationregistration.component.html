@@ -1,0 +1,127 @@
+ 
+   <!-- header starts here -->
+   <mat-toolbar color="primary" class="example-toolbar">
+        
+        <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+        
+    </mat-toolbar>
+    <!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+    <!---side nave starts here -->
+    <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+    <!---side nave ends here -->
+    <!---side nave content starts here -->
+    <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+    <!-- Body content starts here -->
+
+     <div class="container" [style.marginTop.px]=80>
+        <div class="row">
+            <!-- Showing ID Card Details-->
+            <div class="col-xl-4" [style.marginBottom.px]=40>
+            <p>Your Reference Number is: GC12ED34H5</p>
+
+            <mat-card class="mr-6 p-3 border" >
+                <p><img  class="d-sm-inline-flex" src="assets/images/getset.PNG" width=180>   <img  class="d-sm-inline-flex float-right img-fluid" src="assets/images/scan_qr.png" width=40 > </p>
+                <div class="">
+                    <img  class="float-left border p-1 img-fluid img-width" src="assets/images/user.png" >
+                    <table class="d-sm-inline-flex ml-4">
+                        <tr><td colspan="2">kanna rakesh</td></tr>
+                        <tr><td >25/M &nbsp; &nbsp; &nbsp; DOB: 12/25/2018</td></tr>
+                        <tr><td colspan="2">W22A34R6A23SDA</td></tr>
+                        <tr><td colspan="2">8566644421</td></tr>
+                        <tr><td colspan="2">sample@gmail.com</td></tr>
+                    </table>
+                </div>
+                <div class="clearfix"></div> 
+                </mat-card>
+            </div>
+            <!-- Showing ID Card Details ENDS HERE-->
+            <!-- Registring Organization-->
+            <div class="col-xl-8 border-left" >
+                <!--h3>Organization Details</h3-->
+                <div *ngIf="heading"><h2 class="color-pharma">Organization Details (<img  class="d-sm-inline-flex" src="assets/images/logo.PNG" width=120>)</h2></div>
+                <form  role="form" [formGroup]="orgRegistrationForm" (ngSubmit)="registerUser(orgRegistrationForm.value)">
+                    <div class= "col-md-12">
+                    <div class="row">
+                        
+                        <div class=" col-xs-12 col-md-8">
+                            <mat-form-field class="example-full-width kk">
+                                <mat-error *ngFor="let validation of validation_messages.organizationName">
+                                    <mat-error class="error-message" *ngIf="orgRegistrationForm.get('organizationName').hasError(validation.type) && (orgRegistrationForm.get('organizationName').dirty || orgRegistrationForm.get('organizationName').touched)">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <input  id="organisationname" #textInput type="text" matInput value=""  placeholder="Organisation Name* "  (change)="xxy()" [formControl]="orgRegistrationForm.controls['organizationName']" (input)="textInput.value.length > 2 && orgCheckValue(textInput.value)"><span class="float-right">.getsetcare.com</span>
+                            </mat-form-field>
+                        </div>
+                        <div class=" col-xs-12 col-md-4 availableparent " >
+                            <span *ngIf ="check" > <mat-checkbox (click)="checkDomain()">Check </mat-checkbox></span>
+                           <div  [ngStyle]= "{ 'display': checkimage ? 'block' :'none'}"> 
+                            <div *ngIf ="!check"   class="available check-image"><img  src="assets/images/{{image}}.png" width=24><span class="availablemessage">{{availablecontent}}</span></div>
+                           </div>
+                           
+                        </div>  
+                    </div>
+                </div>
+                    <div class= "col-md-12">
+                        <mat-form-field class="registerUser ">
+                            <mat-error *ngFor="let validation of validation_messages.organizationUserName">
+                                <mat-error class="error-message" *ngIf="orgRegistrationForm.get('organizationUserName').hasError(validation.type) && (orgRegistrationForm.get('organizationUserName').dirty || orgRegistrationForm.get('organizationUserName').touched)">{{validation.message}}</mat-error>
+                            </mat-error>
+                                <input  #emailid  matInput  placeholder="Organisation User Name*" [formControl]="orgRegistrationForm.controls['organizationUserName']"      required type="text">
+                        
+                        </mat-form-field>
+                </div>
+                    <div class= "col-md-12">
+                        <mat-form-field class="example-full-width kk">
+                            <mat-error *ngFor="let validation of validation_messages.createPassword">
+                                <mat-error class="error-message" *ngIf="orgRegistrationForm.get('createPassword').hasError(validation.type) && (orgRegistrationForm.get('createPassword').dirty || orgRegistrationForm.get('createPassword').touched)">{{validation.message}}</mat-error>
+                            </mat-error>
+                            <input  type="password" matInput value="" placeholder="Create Password*" [formControl]="orgRegistrationForm.controls['createPassword']">
+                        </mat-form-field>
+                    </div>
+                    <div class= "col-md-12"> 
+                        <mat-form-field class="example-full-width kk">
+                            <mat-error *ngFor="let validation of validation_messages.reEnterPassword">
+                                <mat-error class="error-message" *ngIf="orgRegistrationForm.get('reEnterPassword').hasError(validation.type) && (orgRegistrationForm.get('reEnterPassword').dirty || orgRegistrationForm.get('reEnterPassword').touched)">{{validation.message}}</mat-error>
+                            </mat-error>
+                            <input  type="password" matInput value="" placeholder="Re-enter password*" [formControl]="orgRegistrationForm.controls['reEnterPassword']" (input)="checkPassword($event.target.value)">
+                        </mat-form-field>
+                        <mat-error class="error-message" >{{matching}}</mat-error>
+                
+                    </div>
+                    <div class= "col-md-12">
+                        <div class="row">
+                                <div class= "col-md-1">
+                                        <mat-form-field class="example-full-width num">
+                                            
+                                                <input  type="text" matInput value="+91" placeholder="Mobile Number*" >
+                                            </mat-form-field>
+                                </div>
+                                <div class="col-md-11">
+                                        <mat-form-field class="example-full-width kk">
+                                                <mat-error *ngFor="let validation of validation_messages.phoneNumber">
+                                                    <mat-error class="error-message" *ngIf="orgRegistrationForm.get('phoneNumber').hasError(validation.type) && (orgRegistrationForm.get('phoneNumber').dirty || orgRegistrationForm.get('phoneNumber').touched)">{{validation.message}}</mat-error>
+                                                </mat-error>
+                                                <input  type="text" matInput value="" placeholder="Mobile Number*" [formControl]="orgRegistrationForm.controls['phoneNumber']">
+                                            </mat-form-field>
+                                </div>
+                        </div>
+                            
+                            
+                        
+                    </div>
+                    <div class="col" *ngIf="checkimage"><p class="orgUrl">Organization Access URL:  <span class="color-pharma">{{orgUrl}}</span></p></div>
+                
+                    <div class="text-center ">
+                            <button mat-button type="submit" class="btn-submit float-left mr" [disabled]="!orgRegistrationForm.valid || check">Register</button>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Body content Ends here -->
+</mat-sidenav-content>  
+<!---side nave content ends here -->
+</mat-sidenav-container>

@@ -1,0 +1,115 @@
+   
+
+   <!-- header starts here -->
+ <mat-toolbar color="primary" class="example-toolbar">
+        
+        <p class="logo"> <img class="img-responsive" src="assets/images/logo.PNG" width =180 alt="Logo" ></p>
+        <a  routerLink="/user/login"><button  class="btn btn-pharma pl-3 pr-3 mat-button float-right mr-2 mt-2" > LOGIN</button></a>
+     
+</mat-toolbar>
+<!-- header ends here -->
+<mat-sidenav-container class="example-sidenav-container" 
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 6">
+    <!---side nave starts here -->
+    <mat-sidenav #snav  fixedTopGap="56"></mat-sidenav>  
+    <!---side nave ends here -->
+    <!---side nave content starts here -->
+    <mat-sidenav-content class="pb-5" [style.minHeight.vh]=85>
+    <!-- Body content starts here -->
+        <div [style.marginTop.px]=40>
+            <div class="col-sm-8 offset-sm-2 offset-md-3 col-md-6">
+                    <div   class="text-center" *ngIf = "checkemail">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="color-pharma align-left">Get Set Epidemology Username (or) Email</div>
+            
+                                <form  role="form" [formGroup]="complexForm" (ngSubmit)="checkEmail(complexForm.value)">
+                                        <div class="row"> 
+                                    <mat-form-field class="example-full-width" class="col-sm-8">
+                                        
+                                            <mat-error *ngFor="let validation of validation_messages.eMail">
+                                                <mat-error class="error-message" *ngIf="complexForm.get('eMail').hasError(validation.type) && (complexForm.get('eMail').dirty || complexForm.get('eMail').touched)">{{validation.message}}</mat-error>
+                                            </mat-error>
+                                            <!--mat-icon matPrefix>mail</mat-icon--> <input  type="text" matInput  [formControl]="complexForm.controls['eMail']" placeholder="Enter User Name/Email">
+                                        
+                                    </mat-form-field>
+                                
+                                    <div class="col-md-4">
+                                        
+                                            <div [style.marginTop.px]=10>
+                                                <button mat-button class="btn-submit" [disabled]="!complexForm.valid" type="submit" >Search</button>
+                                                <!--input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                <!--Email is avaliable-->
+            <div class="col-sm-8 offset-sm-2 offset-md-3 col-md-6">
+                    <div *ngIf = "emailavailable">
+                        <mat-card class="mt register-form">                    
+                            <div class="color-pharma text-center " [style.marginBottom.px]=40>
+                                <img src="assets/images/getset.PNG" alt="check" width=350>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="color-epidemology"  [style.marginBottom.px]=50>Account Found <img class="act-found-img" src="assets/images/Tick mark green.png" alt="check" width=18></div>
+                        </div>
+                        <form  role="form" [formGroup]="registeredEmailForm" (ngSubmit)="regwithemail(registeredEmailForm.value)">
+                            <mat-form-field class="example-full-width" class="col-sm-12">
+                                <!--span class="float-left color-pharma">Username / Email</span-->
+                                <mat-error *ngFor="let validation of validation_messages.regEmail">
+                                    <mat-error class="error-message" *ngIf="registeredEmailForm.get('regEmail').hasError(validation.type) && (registeredEmailForm.get('regEmail').dirty || registeredEmailForm.get('regEmail').touched)">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <!--mat-icon matPrefix>mail</mat-icon--> <input  type="text" matInput  [formControl]="registeredEmailForm.controls['regEmail']" placeholder="User Name / Email">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width" class="col-sm-12">
+                                <!--span class="float-left color-pharma">Otp</span-->
+                                <mat-error *ngFor="let validation of validation_messages.regPassword">
+                                    <mat-error class="error-message" *ngIf="registeredEmailForm.get('regPassword').hasError(validation.type) && (registeredEmailForm.get('regPassword').dirty || registeredEmailForm.get('regPassword').touched)">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <!--mat-icon matPrefix>mail</mat-icon--> <input  type="password" matInput  [formControl]="registeredEmailForm.controls['regPassword']" placeholder="Enter password">
+                            </mat-form-field>
+                            <div class="col-md-4">
+                                <div [style.marginTop.px]=34>
+                                    <button mat-button class="btn-submit" type="submit" [disabled]="!registeredEmailForm.valid" >Submit</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </mat-card>   
+                            
+                    </div>
+            </div>
+                <!--Email is avaliable Ends Here-->
+                <!--Email is avaliable-->
+            <div class="col-sm-8 offset-sm-2 offset-md-3 col-md-6">
+                    <div *ngIf = "emailnotavailable">                 
+                    <mat-card class="mt register-form">  
+                        <form  role="form" [formGroup]="unregisteredEmailForm" (ngSubmit)="unregwithemail(registeredEmailForm.value)">                  
+                            <div class="color-pharma text-center" [style.marginBottom.px]=40> <img src="assets/images/getset.PNG" alt="check" width=350></div>
+                            <div class="color-epidemology"  [style.marginBottom.px]=50>Account Not  Found 
+                                <img src="assets/images/close.png" alt="check" width=18>
+                            </div>
+                            <mat-form-field class="checkemail" >
+                                <mat-error *ngFor="let validation of validation_messages.unregEmail">
+                                    <mat-error class="error-message" *ngIf="unregisteredEmailForm.get('unregEmail').hasError(validation.type) && (unregisteredEmailForm.get('unregEmail').dirty || unregisteredEmailForm.get('unregEmail').touched)">{{validation.message}}</mat-error>
+                                </mat-error>
+                                <input  type="email" matInput [formControl]="unregisteredEmailForm.controls['unregEmail']" placeholder=" Enter Email">
+                            </mat-form-field>
+                            <div class="text-center ">
+                                <button mat-button class="jj btn-submit" [disabled]="!unregisteredEmailForm.valid">Register</button>
+                                
+                            </div>
+                        </form>
+                    </mat-card>         
+                    </div>
+            </div>
+                <!--Email is not avaliable Ends Here-->          
+        </div>
+    <!-- Body content Ends here -->
+    </mat-sidenav-content>  
+<!---side nave content ends here -->
+</mat-sidenav-container>
